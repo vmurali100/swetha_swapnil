@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Objects</title>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <script>
+      //Creating An Object In literal Way
+      //Creating Objects in OOP
+      var person = {};
+      person.fname = "Murali";
+      person["lname"] = "Krishna";
+
+      var person2 = {
+        fname: "Susen",
+        lname: "Bario",
+        tel: "(336)905-6576",
+        address: "4693 Quis Rd",
+        city: "Bremen",
+        state: "IN",
+        zip: 73009
+      };
+      person2.some = "Some values ";
+      //   document.getElementById("demo").innerHTML =
+      //     person2.fname + "<br>" + person2.lname + "<br>" + person2.tel;
+      var results = "";
+      for (a in person2) {
+        console.log(a);
+        if (a != "zip") {
+          results = results + a + " : " + person2[a] + "<br>";
+        }
+      }
+      document.getElementById("demo").innerHTML = results;
+      //   console.log(person2.fname);
+    </script>
+  </body>
+</html>

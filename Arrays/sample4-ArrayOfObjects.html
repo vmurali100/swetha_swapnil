@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Array Of Objects</title>
+  </head>
+  <body>
+    <script>
+      //   var data = [{ fname: "Murali" }, { fname: "Ram" }, { fname: "ravi" }];
+
+      var data = [
+        {
+          fname: "Greg",
+          lname: "Rubiano"
+        },
+        {
+          fname: "Dan",
+          lname: "Scribner"
+        },
+        {
+          fname: "Darryl",
+          lname: "Bubel"
+        },
+        {
+          fname: "Janis",
+          lname: "Deitz"
+        }
+      ];
+
+      var newPerson = { fname: "Ram", lname: "Kumar" };
+      data.push(newPerson);
+
+      for (i = 0; i < data.length; i++) {
+        document.write(data[i].fname + "<br>");
+      }
+      //   console.log(data);
+    </script>
+  </body>
+</html>

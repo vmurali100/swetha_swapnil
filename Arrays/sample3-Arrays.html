@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Arrays</title>
+  </head>
+  <body>
+    <script>
+      var users = [
+        "person1",
+        "person2",
+        "person3",
+        "person4",
+        "abc",
+        "cde",
+        "bfc",
+        "person2"
+      ];
+
+      //   users.push("person5"); // Push method will add a value to end of the array .
+      //   users.unshift("person0"); //Unshift method will add a value to the start of the Array
+      //   users.splice(2, 0, "Person"); //Splice method will add a value at specified index
+      //   users.pop(); // POP method will remove a value from the last
+      //   users.shift(); // Shift method will remove a value at the Beginnnig of the array
+      //   users.splice(2, 1); Splice method with 2 arguments will remove a values in an array
+      //   users.sort();
+      //   users.reverse();
+      //   console.log(users.find(person1));
+      //   console.log(users.indexOf("person4")); index value of the given argument will be returned
+      //   console.log(users.indexOf("person2"));
+      console.log(users);
+      //   console.log(users[0]);
+      //   console.log(users[3]);
+
+      for (i = 0; i < users.length; i++) {
+        document.write(users[i] + "<br>");
+      }
+      //   for (i = 0; i < users.length; i++) {
+      //     document.write(users[i] + "<br>");
+      //   }
+    </script>
+  </body>
+</html>
