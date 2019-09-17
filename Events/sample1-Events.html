@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="myBtn" onclick="sayHello()">Click</button>
+
+    <br />
+
+    <input type="text" onfocus="saysome()" onblur="blurfunc()" />
+
+    <script>
+      //   document.getElementById("myBtn").onclick = sayHello;
+
+      function sayHello() {
+        alert("You Just Clicked on this Button");
+      }
+
+      function saysome() {
+        console.log("just focused on Input");
+      }
+
+      function blurfunc() {
+        console.log("blurfunc happend");
+      }
+    </script>
+  </body>
+</html>
