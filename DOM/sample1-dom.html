@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="demo" name="user" class="usrClass"></div>
+    <div id="demo1" name="user" class="usrClass"></div>
+
+    <script>
+      document.getElementById("demo");
+      //   This method will get Single a Element , Which contains demo As id
+
+      document.getElementsByTagName("div");
+      // This method will give us the collection of the Div in the document
+
+      document.getElementsByName("user");
+      //   This method will give us the Collection of Elements with name Attribute
+
+      document.getElementsByClassName("usrClass");
+      //   This method will give the collection of element with class name "usrClass"
+
+      document.querySelector("div");
+      //   This method will give fist Instance of matching elements
+
+      document.querySelectorAll("div");
+      //   This method will give all instance of matching elements
+    </script>
+  </body>
+</html>
