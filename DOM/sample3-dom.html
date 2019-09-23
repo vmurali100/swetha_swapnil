@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="fname">First Name : </label><input type="text" id="fname" />
+    <br /><br />
+    <label for="lname">Last Name : </label><input type="text" id="lname" />
+    <br /><br />
+    <label for="email">Email : </label
+    ><input type="text" id="email" /><br /><br />
+
+    <button onclick="getValues()">Get Value</button>
+
+    <button onclick="setValue()">Set Value</button>
+
+    <script>
+      function getValues() {
+        // var fname = document.getElementsByTagName("input")[0].value;
+        var person = {
+          fname: "",
+          lname: "",
+          email: ""
+        };
+        // for (a in person) {
+        //   console.log(a);
+        //   person[a] = document.getElementById(a).value;
+        // }
+        person.fname = document.getElementById("fname").value;
+        person.lname = document.getElementById("fname").value;
+        person.email = document.getElementById("email").value;
+        console.log(person);
+      }
+
+      function setValue() {
+        document.getElementById("fname").value = "Murali";
+      }
+    </script>
+  </body>
+</html>
