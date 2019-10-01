@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="fname">First Name : </label><input type="text" id="fname" />
+    <br /><br />
+    <label for="lname">Last Name : </label><input type="text" id="lname" />
+    <br /><br />
+    <label for="email">Email : </label
+    ><input type="text" id="email" /><br /><br />
+
+    <label for="gender">Gender</label>
+    <input type="radio" name="gender" id="" value="Male" />Male
+    <input type="radio" name="gender" id="" value="Female" />Female <br />
+    <br />
+    <label for="subject">Subjects</label>
+    <input type="checkbox" name="subject" id="" value="HTML" />HTML
+    <input type="checkbox" name="subject" id="" value="CSS" />CSS
+    <input type="checkbox" name="subject" id="" value="JS" />JS
+    <input type="checkbox" name="subject" id="" value="ReactJS" />ReactJS
+    <br /><br />
+
+    <button onclick="getValues()">Get Value</button>
+
+    <button onclick="setValue()">Set Value</button>
+    <hr />
+    <div id="demo"></div>
+    <script>
+      function getValues() {
+        // var fname = document.getElementsByTagName("input")[0].value;
+        var person = {
+          fname: "",
+          lname: "",
+          email: "",
+          gender: "",
+          subjects: []
+        };
+        // for (a in person) {
+        //   console.log(a);
+        //   person[a] = document.getElementById(a).value;
+        // }
+        person.fname = document.getElementById("fname").value;
+        person.lname = document.getElementById("fname").value;
+        person.email = document.getElementById("email").value;
+
+        var radioElements = document.getElementsByName("gender");
+        for (i = 0; i < radioElements.length; i++) {
+          console.log(radioElements[i].checked);
+          if (radioElements[i].checked) {
+            person.gender = radioElements[i].value;
+            console.log("The selected Value is " + radioElements[i].value);
+          }
+        }
+
+        var checkboxElements = document.getElementsByName("subject");
+
+        for (i = 0; i < checkboxElements.length; i++) {
+          if (checkboxElements[i].checked) {
+            person.subjects.push(checkboxElements[i].value);
+            console.log(checkboxElements[i].value);
+          }
+        }
+
+        var results = "";
+        for (a in person) {
+          results = results + a + " : " + person[a] + "<br>";
+        }
+        document.getElementById("demo").innerHTML = results;
+        console.log(person);
+      }
+
+      function setValue() {
+        document.getElementById("fname").value = "Murali";
+      }
+    </script>
+  </body>
+</html>
