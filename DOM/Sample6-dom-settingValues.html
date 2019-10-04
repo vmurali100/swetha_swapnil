@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <label for="">First Name</label><input type="text" id="fname" /><br />
+      <label for="">Last Name</label><input type="text" id="lname" /><br />
+      <label for="">Gender</label>
+      <input type="radio" name="gender" value="Male" />Male
+      <input type="radio" name="gender" value="Female" /> Female <br />
+      <label for="">Subjects</label>
+      <input type="checkbox" name="subject" id="" value="HTML" />HTML
+      <input type="checkbox" name="subject" id="" value="CSS" />CSS
+      <input type="checkbox" name="subject" id="" value="JS" />JS
+      <input type="checkbox" name="subject" id="" value="Angular" />ANGULAR
+      <br />
+
+      <button type="button" onclick="addUser()">ADD User</button>
+      <button type="button" onclick="editPerson()">EDIT User</button>
+    </form>
+    <script>
+      var person = {
+        fname: "Murali",
+        lname: "Krishna",
+        gender: "Male",
+        subjects: ["HTML", "CSS", "Angular"]
+      };
+      function addUser() {
+        var newPerson = {
+          fname: "",
+          lname: "",
+          gender: "",
+          subjects: []
+        };
+        for (a in newPerson) {
+          if (a != "gender" && a !== "subjects") {
+            newPerson[a] = document.getElementById(a).value;
+          } else if (a == "gender") {
+            var allRadioBtns = document.getElementsByName("gender");
+            for (i = 0; i < allRadioBtns.length; i++) {
+              //   console.log(allRadioBtns[i].value);
+              if (allRadioBtns[i].checked) {
+                newPerson[a] = allRadioBtns[i].value;
+              }
+            }
+          } else {
+            var allCheckBoxs = document.getElementsByName("subject");
+            for (i = 0; i < allCheckBoxs.length; i++) {
+              //   console.log(allRadioBtns[i].value);
+              if (allCheckBoxs[i].checked) {
+                newPerson[a].push(allCheckBoxs[i].value);
+              }
+            }
+          }
+        }
+        console.log(newPerson);
+      }
+      function editPerson() {
+        // document.getElementById("fname").value = person.fname;
+        // document.getElementById("lname").value = person.lname;
+        for (a in person) {
+          if (a != "gender" && a != "subjects") {
+            document.getElementById(a).value = person[a];
+          } else if (a == "gender") {
+            var allRadioBtns = document.getElementsByName("gender");
+            for (i = 0; i < allRadioBtns.length; i++) {
+              //   console.log(allRadioBtns[i].value);
+              if (allRadioBtns[i].value == person[a]) {
+                allRadioBtns[i].checked = true;
+              }
+            }
+          } else {
+            var allCheckBoxs = document.getElementsByName("subject");
+            for (i = 0; i < allCheckBoxs.length; i++) {
+              //   console.log(allCheckBoxs[i].value);
+              for (j = 0; j < person.subjects.length; j++) {
+                console.log(person.subjects[j]);
+                if (allCheckBoxs[i].value == person.subjects[j]) {
+                  allCheckBoxs[i].checked = true;
+                }
+              }
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
