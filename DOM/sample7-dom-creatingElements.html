@@ -8,10 +8,15 @@
   </head>
   <body>
     <ul id="myUl"></ul>
+
     <table id="myTable"></table>
+
     <script>
-          for(i=0;i<5;i++){var myTr=document.createElement("tr");document.getElementById("myTable").appendChild(myTr)}
-      <tr>​</tr>​
+      for (i = 0; i < 10; i++) {
+        var myLi = document.createElement("li");
+        myLi.innerHTML = "Hello I am LI " + i;
+        document.getElementById("myUl").appendChild(myLi);
+      }
     </script>
   </body>
 </html>
