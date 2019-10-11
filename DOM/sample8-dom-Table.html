@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="display()">Show Data</button>
+    <table border="1">
+      <thead>
+        <th>ID</th>
+        <th>Email</th>
+        <th>User Name</th>
+        <th>Password</th>
+      </thead>
+      <tbody id="myTable"></tbody>
+    </table>
+    <script>
+      var data = [];
+
+      function display() {
+        var obj = {
+          id: 12975,
+          email: "KKachelmuss@quis.net",
+          username: "DKeaton",
+          password: "CyJoJ"
+        };
+
+        data.push(obj);
+
+        document.getElementById("myTable").innerHTML = "";
+        for (i = 0; i < data.length; i++) {
+          var myTr = document.createElement("tr");
+
+          for (a in data[i]) {
+            var myTd = document.createElement("td");
+            myTd.innerHTML = data[i][a];
+            myTr.appendChild(myTd);
+          }
+          // var myTd1 = document.createElement("td");
+          // myTd1.innerHTML = data[i].id;
+          // myTr.appendChild(myTd1);
+
+          // var myTd2 = document.createElement("td");
+          // myTd2.innerHTML = data[i].email;
+          // myTr.appendChild(myTd2);
+
+          // var myTd3 = document.createElement("td");
+          // myTd3.innerHTML = data[i].username;
+          // myTr.appendChild(myTd3);
+
+          // var myTd4 = document.createElement("td");
+          // myTd4.innerHTML = data[i].password;
+          // myTr.appendChild(myTd4);
+
+          document.getElementById("myTable").appendChild(myTr);
+        }
+      }
+    </script>
+  </body>
+</html>

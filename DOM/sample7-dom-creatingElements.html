@@ -9,13 +9,27 @@
   <body>
     <ul id="myUl"></ul>
 
-    <table id="myTable"></table>
+    <table id="myTable" border="1"></table>
 
     <script>
       for (i = 0; i < 10; i++) {
         var myLi = document.createElement("li");
         myLi.innerHTML = "Hello I am LI " + i;
         document.getElementById("myUl").appendChild(myLi);
+      }
+
+      for (i = 0; i < 10; i++) {
+        var myTr = document.createElement("tr");
+
+        var myTd1 = document.createElement("td");
+        myTd1.innerHTML = "Hello";
+        myTr.appendChild(myTd1);
+
+        var myTd2 = document.createElement("td");
+        myTd2.innerHTML = "Hello 2";
+        myTr.appendChild(myTd2);
+
+        document.getElementById("myTable").appendChild(myTr);
       }
     </script>
   </body>

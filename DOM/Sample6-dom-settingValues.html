@@ -29,6 +29,8 @@
         <th>Last Name</th>
         <th>Gender</th>
         <th>Subjects</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </thead>
       <tbody id="myTable"></tbody>
     </table>
@@ -63,6 +65,7 @@
             }
           }
         }
+
         // Calling a function and sending the captured Object
         showData(newPerson);
       }
@@ -83,6 +86,19 @@
           myTd.innerHTML = obj[a];
           tr.appendChild(myTd);
         }
+
+        var editTd = document.createElement("td");
+        var editBtn = document.createElement("button");
+        editBtn.innerHTML = "Edit";
+        editTd.appendChild(editBtn);
+
+        var deleteTd = document.createElement("td");
+        var deleteBtn = document.createElement("button");
+        deleteBtn.innerHTML = "Delete";
+        deleteTd.appendChild(deleteBtn);
+
+        tr.appendChild(editTd);
+        tr.appendChild(deleteTd);
       }
     </script>
   </body>
