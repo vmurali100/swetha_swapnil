@@ -7,29 +7,54 @@
     <title>Document</title>
   </head>
   <body>
-    <button onclick="display()">Show Data</button>
+    <!-- <button onclick="display()">Show Data</button> -->
     <table border="1">
       <thead>
         <th>ID</th>
         <th>Email</th>
         <th>User Name</th>
         <th>Password</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </thead>
       <tbody id="myTable"></tbody>
     </table>
+    <br /><br />
+    <form>
+      <label for="email">Email : </label>
+      <input type="text" id="email" /><br />
+      <label for="username">User Name : </label>
+      <input type="text" id="username" /><br />
+      <label for="email">Password : </label>
+      <input type="text" id="password" /><br />
+      <label for="email">ID : </label>
+      <input type="text" id="id" /><br />
+
+      <button onclick="updateUser()" type="button">Update User</button>
+    </form>
     <script>
-      var data = [];
+      var data = [
+        {
+          id: 1379,
+          email: "JBothun@ac.com",
+          username: "RKnowles",
+          password: "4jZYy"
+        },
+        {
+          id: 1380,
+          email: "CMarin@dolor.io",
+          username: "GRitchie",
+          password: "3zxpM"
+        },
+        {
+          id: 1381,
+          email: "NTabor@magna.net",
+          username: "AHancock",
+          password: "yywep"
+        }
+      ];
 
-      function display() {
-        var obj = {
-          id: 12975,
-          email: "KKachelmuss@quis.net",
-          username: "DKeaton",
-          password: "CyJoJ"
-        };
-
-        data.push(obj);
-
+      function display(data) {
         document.getElementById("myTable").innerHTML = "";
         for (i = 0; i < data.length; i++) {
           var myTr = document.createElement("tr");
@@ -39,6 +64,21 @@
             myTd.innerHTML = data[i][a];
             myTr.appendChild(myTd);
           }
+
+          var editTd = document.createElement("td");
+          var editBtn = document.createElement("button");
+          editBtn.innerHTML = "Edit";
+          editBtn.setAttribute("onclick", "editUser(" + i + ")");
+          editTd.appendChild(editBtn);
+          myTr.appendChild(editTd);
+
+          var deleteTd = document.createElement("td");
+          var deleteBtn = document.createElement("button");
+          deleteBtn.innerHTML = "Delete"; // Adding text to the Button
+          deleteBtn.setAttribute("onclick", "deleteUser(" + i + ")"); // Adding onclick Attribute
+          deleteTd.appendChild(deleteBtn); //placing  button to inside td
+          myTr.appendChild(deleteTd); // Adding td to Table row
+
           // var myTd1 = document.createElement("td");
           // myTd1.innerHTML = data[i].id;
           // myTr.appendChild(myTd1);
@@ -58,6 +98,45 @@
           document.getElementById("myTable").appendChild(myTr);
         }
       }
+
+      function deleteUser(i) {
+        console.log("deleteUser is called " + i);
+        data.splice(i, 1);
+        display(data);
+      }
+      function editUser(i) {
+        index = i;
+        console.log(data[i]);
+        // document.getElementById("email").value = data[i].email;
+        // document.getElementById("username").value = data[i].username;
+        // document.getElementById("password").value = data[i].password;
+        // document.getElementById("id").value = data[i].id;
+        for (a in data[i]) {
+          document.getElementById(a).value = data[i][a];
+        }
+      }
+
+      function updateUser() {
+        // var newObj = {
+        //   username: document.getElementById("username").value,
+        //   email: document.getElementById("email").value,
+        //   password: document.getElementById("password").value,
+        //   id: document.getElementById("id").value
+        // };
+        var newObj = {
+          id: "",
+          email: "",
+          username: "",
+          password: ""
+        };
+        for (a in newObj) {
+          newObj[a] = document.getElementById(a).value;
+        }
+
+        data[index] = newObj;
+        display(data);
+      }
+      display(data);
     </script>
   </body>
 </html>
