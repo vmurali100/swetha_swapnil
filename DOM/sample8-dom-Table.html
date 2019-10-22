@@ -31,6 +31,7 @@
       <input type="text" id="id" /><br />
 
       <button onclick="updateUser()" type="button">Update User</button>
+      <button onclick="createUser()" type="button">Update User</button>
     </form>
     <script>
       var data = [
@@ -137,6 +138,20 @@
         display(data);
       }
       display(data);
+
+      function createUser() {
+        var newObj = {
+          id: "",
+          email: "",
+          username: "",
+          password: ""
+        };
+        for (a in newObj) {
+          newObj[a] = document.getElementById(a).value;
+        }
+        data.push(newObj);
+        display(data);
+      }
     </script>
   </body>
 </html>
