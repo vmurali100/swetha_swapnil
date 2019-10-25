@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <label for="fname">First Name : </label>
+      <input type="text" id="fname" /><br />
+      <label for="lname">Last Name : </label>
+      <input type="text" id="lname" /><br />
+
+      <button onclick="updateUser()" type="button">Update User</button>
+      <button onclick="createUser()" type="button">Create User</button>
+      <button onclick="getDataFromServer()" type="button">Get Data</button>
+    </form>
+    <br /><br />
+    <table border="1">
+      <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Id</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </thead>
+      <tbody id="myTable"></tbody>
+    </table>
+    <br /><br />
+
+    <script>
+      function createUser() {
+        var newObj = {
+          fname: "",
+          lname: ""
+        };
+        for (a in newObj) {
+          newObj[a] = document.getElementById(a).value;
+        }
+        newObj.id = null;
+
+        var serverData = new XMLHttpRequest();
+
+        serverData.onreadystatechange = function() {
+          if (serverData.readyState == 4 && serverData.status == 201) {
+            console.log(JSON.parse(serverData.response));
+            getDataFromServer();
+          }
+        };
+
+        serverData.open("POST", "http://localhost:3000/users");
+        serverData.setRequestHeader("Content-type", "application/json");
+        serverData.send(JSON.stringify(newObj));
+      }
+
+      function getDataFromServer() {
+        var serverData = new XMLHttpRequest();
+        serverData.onreadystatechange = function() {
+          if (serverData.readyState == 4 && serverData.status == 200) {
+            console.log(JSON.parse(serverData.response));
+            data = JSON.parse(serverData.response);
+            display(data);
+          }
+        };
+        serverData.open("GET", "http://localhost:3000/users");
+        serverData.send();
+      }
+
+      function display(data) {
+        document.getElementById("myTable").innerHTML = "";
+        for (i = 0; i < data.length; i++) {
+          var myTr = document.createElement("tr");
+
+          for (a in data[i]) {
+            var myTd = document.createElement("td");
+            myTd.innerHTML = data[i][a];
+            myTr.appendChild(myTd);
+          }
+
+          var editTd = document.createElement("td");
+          var editBtn = document.createElement("button");
+          editBtn.innerHTML = "Edit";
+          editBtn.setAttribute("onclick", "editUser(" + i + ")");
+          editTd.appendChild(editBtn);
+          myTr.appendChild(editTd);
+
+          var deleteTd = document.createElement("td");
+          var deleteBtn = document.createElement("button");
+          deleteBtn.innerHTML = "Delete"; // Adding text to the Button
+          deleteBtn.setAttribute("onclick", "deleteUser(" + i + ")"); // Adding onclick Attribute
+          deleteTd.appendChild(deleteBtn); //placing  button to inside td
+          myTr.appendChild(deleteTd); // Adding td to Table row
+
+          document.getElementById("myTable").appendChild(myTr);
+        }
+      }
+
+      function editUser(i) {
+        index = i;
+        for (a in data[i]) {
+          document.getElementById(a).value = data[i][a];
+        }
+      }
+
+      function updateUser() {
+        var newObj = {
+          fname: "",
+          lname: ""
+        };
+        for (a in newObj) {
+          newObj[a] = document.getElementById(a).value;
+        }
+
+        newObj.id = data[index].id;
+        var serverData = new XMLHttpRequest();
+        serverData.onreadystatechange = function() {
+          if (serverData.readyState == 4 && serverData.status == 200) {
+            console.log("User Updated");
+          }
+        };
+        serverData.open("PUT", "http://localhost:3000/users/" + data[index].id);
+        serverData.setRequestHeader("Content-type", "application/json");
+        serverData.send(JSON.stringify(newObj));
+      }
+
+      function deleteUser(i) {
+        var serverData = new XMLHttpRequest();
+        serverData.onreadystatechange = function() {
+          if (serverData.readyState == 4 && serverData.status == 200) {
+            console.log("User Updated");
+          }
+        };
+        serverData.open("DELETE", "http://localhost:3000/users/" + data[i].id);
+        serverData.setRequestHeader("Content-type", "application/json");
+        serverData.send();
+      }
+    </script>
+  </body>
+</html>
