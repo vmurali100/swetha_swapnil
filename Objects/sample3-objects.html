@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let person = {
+        fname: "Murali",
+        lname: "Krishna",
+        getFullName: function() {
+          return this.fname + " " + this.lname;
+        }
+      };
+      //Creating An Object by Creating A Constructor Function
+
+      function Person(fname, lname) {
+        this.fname = fname;
+        this.lname = lname;
+      }
+
+      //Instance Of the Cunstructor function
+      let person1 = new Person("Murali", "Krishna");
+
+      console.log(person1);
+    </script>
+  </body>
+</html>

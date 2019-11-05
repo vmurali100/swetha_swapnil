@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <label for="fname">First Name : </label>
+      <input type="text" id="fname" onkeyup="handleInput()" /><br />
+      <label for="lname">Last Name : </label>
+      <input type="text" id="lname" onkeyup="handleInput()" /><br />
+
+      <button onclick="createUser(event)" type="button" disabled id="myBtn">
+        Create User
+      </button>
+    </form>
+
+    <script>
+      var newObj = {
+        fname: "",
+        lname: ""
+      };
+      function createUser() {
+        for (a in newObj) {
+          newObj[a] = document.getElementById(a).value;
+        }
+
+        if (document.getElementById("fname").value == "") {
+          alert("Please enter First Name");
+        } else if (document.getElementById("lname").value == "") {
+          alert("Please enter Last Name");
+        } else {
+          console.log(newObj);
+        }
+
+        // var check = true;
+        // for (a in newObj) {
+
+        // }
+
+        // if (check == false) {
+        //   alert("PLease Enter All Fields");
+        // } else {
+        //   console.log(newObj);
+        // }
+      }
+
+      function handleInput() {
+        console.log("User Key pressed");
+        var check = false;
+        for (a in newObj) {
+          if (document.getElementById(a).value == "") {
+            check = true;
+          }
+        }
+        if (check == false) {
+          document.getElementById("myBtn").disabled = false;
+        } else {
+          document.getElementById("myBtn").disabled = true;
+        }
+      }
+    </script>
+  </body>
+</html>

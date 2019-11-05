@@ -14,7 +14,7 @@
       <input type="text" id="lname" /><br />
 
       <button onclick="updateUser()" type="button">Update User</button>
-      <button onclick="createUser()" type="button">Create User</button>
+      <button onclick="createUser(event)" type="button">Create User</button>
       <button onclick="getDataFromServer()" type="button">Get Data</button>
     </form>
     <br /><br />
@@ -29,9 +29,9 @@
       <tbody id="myTable"></tbody>
     </table>
     <br /><br />
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
-      function createUser() {
+      function createUser(event) {
         var newObj = {
           fname: "",
           lname: ""
@@ -41,20 +41,33 @@
         }
         newObj.id = null;
 
-        var serverData = new XMLHttpRequest();
+        // var serverData = new XMLHttpRequest();
 
-        serverData.onreadystatechange = function() {
-          if (serverData.readyState == 4 && serverData.status == 201) {
-            console.log(JSON.parse(serverData.response));
-            getDataFromServer();
+        // serverData.onreadystatechange = function() {
+        //   if (serverData.readyState == 4 && serverData.status == 201) {
+        //     console.log(JSON.parse(serverData.response));
+        //     getDataFromServer();
+        //   }
+        // };
+
+        // serverData.open("POST", "http://localhost:3000/users");
+        // serverData.setRequestHeader("Content-type", "application/json");
+        // serverData.send(JSON.stringify(newObj));
+
+        $.ajax({
+          beforeSend: function(xhrObj) {
+            xhrObj.setRequestHeader("Content-Type", "application/json");
+            xhrObj.setRequestHeader("Accept", "application/json");
+          },
+          type: "POST",
+          url: "http://localhost:3000/users",
+          data: JSON.stringify(newObj),
+          success: function() {
+            console.log("User Created");
           }
-        };
-
-        serverData.open("POST", "http://localhost:3000/users");
-        serverData.setRequestHeader("Content-type", "application/json");
-        serverData.send(JSON.stringify(newObj));
+        });
       }
-
+      getDataFromServer();
       function getDataFromServer() {
         var serverData = new XMLHttpRequest();
         serverData.onreadystatechange = function() {
@@ -130,6 +143,7 @@
         serverData.onreadystatechange = function() {
           if (serverData.readyState == 4 && serverData.status == 200) {
             console.log("User Updated");
+            return false;
           }
         };
         serverData.open("DELETE", "http://localhost:3000/users/" + data[i].id);

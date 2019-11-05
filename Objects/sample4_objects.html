@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Literal way Of Creating Objectss
+      var emp = {
+        fname: "Murali",
+        lname: "Krishna"
+      };
+
+      //Cloning An Object or Copying An Object
+      let em1 = emp;
+      em1.fname = "NewPerson";
+      let em2 = emp;
+
+      console.log(em2);
+
+      //Copying Of
+      let e1 = Object.assign({}, emp);
+      e1.fname = "VMK";
+      let e2 = Object.assign({}, emp);
+
+      //   console.log(e1);
+      //   console.log(e2);
+
+      //OOP of Creating Objects
+      function Employee(empName, empDept) {
+        this.companyName = "ABC";
+        this.companyCountry = "USA";
+        this.companyAddrss = "Ss";
+        this.empName = empName;
+        this.empDept = empDept;
+      }
+
+      let employee1 = new Employee("Sam", "IT");
+      //   employee1.companyName = "New Company";
+      let employee2 = new Employee("Ram", "Dev");
+      Employee.prototype.companySector = "Tele Communications";
+      Employee.prototype.welcomeMsg = function(manager) {
+        return (
+          "Welcome " +
+          this.empName +
+          ". You will be Deployed In " +
+          this.empDept +
+          ". Please Contact " +
+          manager
+        );
+      };
+
+      console.log(employee1);
+      console.log(employee2);
+
+      console.log(employee1.companySector);
+      console.log(employee2.companySector);
+      console.log(employee1.welcomeMsg("Swetha"));
+      console.log(employee2.welcomeMsg("Swapnil"));
+    </script>
+  </body>
+</html>
