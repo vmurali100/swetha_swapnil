@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Literl way of creating An Object
+      let abc = {};
+
+      //Creating Objects With Constructor Function
+      function Person(fname) {
+        this.fname = fname;
+      }
+
+      let person1 = new Person("Murali");
+
+      //Creating Objects With Classes
+
+      class Student {
+        constructor(fname, lname) {
+          this.fname = fname;
+          this.lname = lname;
+        }
+      }
+
+      class SuperStudent extends Student {
+        constructor(fname, lname) {
+          //If we need to ADD then Super Method suppoed With Argumwents to be Called
+          super(fname, lname);
+          this.fullName = fname + " " + lname;
+        }
+      }
+
+      let newStudent = new Student("Murali", "Krishna");
+
+      let superStudet1 = new SuperStudent("Ram", "Krishna");
+
+      console.log(newStudent);
+      console.log(superStudet1);
+    </script>
+  </body>
+</html>

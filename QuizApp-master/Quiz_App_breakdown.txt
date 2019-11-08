@@ -1,0 +1,5 @@
+1. Creating A Constructor function to Create An Object Contains questionText,Choices And Correnct Answer
+2. Create An Array of Objects With Question Constructor function (Line no 56)
+3. Create Quiz Constructor which accepts Array Of Questions as an argument
+4. Create a quiz Object with Quiz Constructor(Line N0 106)
+3. Add iSEnded, Guess, getQuestionIndex to 
