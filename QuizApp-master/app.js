@@ -31,7 +31,7 @@ function showProgress() {
 function guess(id, guess) {
   var button = document.getElementById(id);
   button.onclick = function() {
-    quiz.guess(guess);
+    quiz.guessClass(guess);
     populate();
   };
 }
@@ -93,7 +93,7 @@ Quiz.prototype.isEnded = function() {
   return this.questions.length === this.questionIndex;
 };
 
-Quiz.prototype.guess = function(answer) {
+Quiz.prototype.guessClass = function(answer) {
   if (this.getQuestionIndex().correctAnswer(answer)) {
     this.score++;
   }
