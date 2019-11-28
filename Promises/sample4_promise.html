@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="getData()">Get Data</button>
+    <ul id="myUl"></ul>
+    <script>
+      var users;
+      function getData() {
+        return new Promise((resolve, reject) => {
+          var abc = new XMLHttpRequest();
+          abc.onreadystatechange = function() {
+            if (abc.readyState == 4 && abc.status == 200) {
+              users = JSON.parse(abc.response);
+              resolve(users);
+            }
+          };
+
+          abc.open("GET", "http://localhost:3000/users");
+          abc.send();
+        });
+      }
+      getData()
+        .then(users => {
+          console.log(users);
+          displayData(users);
+        })
+        .catch(() => {
+          console.log("Something Happend");
+        });
+
+      //   function displayData(users) {
+      //     for (i = 0; i < users.length; i++) {
+      //       var myLi = document.createElement("li");
+      //       myLi.innerHTML = users[i].fname;
+      //       document.getElementById("myUl").appendChild(myLi);
+      //     }
+      //   }
+
+      getData();
+    </script>
+  </body>
+</html>

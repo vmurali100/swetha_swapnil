@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function addUsertoLocalServer() {
+        // fetch("http://localhost:3000/users", {
+        //   method: "POST",
+        //   body: { fname: "Ram", lname: "Krishna" },
+        // })
+        //   .then(res => {
+        //     return res.json();
+        //   })
+        //   .then(response => {
+        //     console.log("User Added");
+        //   });
+      }
+
+      //   fetch("http://localhost:3000/users", {
+      //     method: "POST",
+      //     body: JSON.stringify({ fname: "Ram", lname: "Krishna" }),
+      //     headers: {
+      //       Accept: "application/json",
+      //       "Content-Type": "application/json"
+      //     }
+      //   }).then(() => {
+      //     console.log("User Added");
+      //   });
+      //   addUsertoLocalServer();
+
+      var abc = new XMLHttpRequest();
+      abc.onreadystatechange = function() {
+        if (abc.readyState == 4 && abc.status == 201) {
+          console.log("User Added");
+        }
+      };
+
+      abc.open("POST", "http://localhost:3000/users");
+      abc.setRequestHeader("Content-Type", "application/json");
+      abc.send(JSON.stringify({ fname: "Murali", lname: "Krishna" }));
+    </script>
+  </body>
+</html>

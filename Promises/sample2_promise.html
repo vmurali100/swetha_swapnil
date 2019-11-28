@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="getLatest(event)">Get Latest Users</button>
+    <script>
+      function postData(event) {
+        event.preventDefault();
+        var abc = new XMLHttpRequest();
+        abc.onreadystatechange = function() {
+          if (abc.readyState == 4 && abc.status == 201) {
+            console.log("User Added");
+          }
+        };
+
+        abc.open("POST", "http://localhost:3000/users");
+        abc.setRequestHeader("Content-Type", "application/json");
+        abc.send(JSON.stringify({ fname: "Murali", lname: "Krishna" }));
+      }
+
+      function getUsers() {
+        var abc = new XMLHttpRequest();
+        abc.onreadystatechange = function() {
+          if (abc.readyState == 4 && abc.status == 200) {
+            console.log(JSON.parse(abc.response));
+          }
+        };
+
+        abc.open("GET", "http://localhost:3000/users");
+        abc.send();
+      }
+
+      function getLatest(event) {
+        postData(event);
+        getUsers();
+      }
+    </script>
+  </body>
+</html>
