@@ -9,22 +9,32 @@
   <body>
     <script>
       var usersDetails;
-      function getUsers() {
-        fetch("https://jsonplaceholder.typicode.com/users")
-          .then(response => {
-            return response.json();
-          })
-          .then(data => {
-            console.log(data);
-            // displayData();
-          })
-          .catch(() => {
-            console.log("Somethin Happend");
-            window.location = "sample4_promise.html";
-          });
-      }
+      //   function getUsers() {
+      //     fetch("https://jsonplaceholder.typicode.com/users")
+      //       .then(response => {
+      //         return response.json();
+      //       })
+      //       .then(data => {
+      //         console.log(data);
+      //         // displayData();
+      //       })
+      //       .catch(() => {
+      //         console.log("Somethin Happend");
+      //         window.location = "sample4_promise.html";
+      //       });
+      //   }
 
+      async function getUsers() {
+        const users = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        ).then(response => {
+          return response.json();
+        });
+        console.log(users);
+      }
       getUsers();
+
+      //   getUsers();
     </script>
   </body>
 </html>
